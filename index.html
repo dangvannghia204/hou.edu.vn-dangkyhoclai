@@ -6,7 +6,7 @@
     <title>Hệ Thống Đăng Ký Học Tập - Đào Tạo Từ Xa</title>
     <style>
         /* GIẢI PHÁP TỰ ĐỘNG ẨN THANH THÔNG BÁO GOOGLE (AUTOMATIC MASKING)
-           Bằng cách đẩy iframe lên trên vùng nhìn thấy và ẩn lề dư.
+           Thay vì đóng thủ công, chúng ta đẩy iframe lên trên vùng nhìn thấy.
         */
         body, html {
             margin: 0;
@@ -23,22 +23,22 @@
             left: 0;
             right: 0;
             bottom: 0;
-            overflow: hidden; /* Ngăn thanh banner của Google lộ ra */
+            overflow: hidden; /* Quan trọng: Ngăn banner lộ ra */
         }
 
         iframe {
             position: absolute;
-            /* TỰ ĐỘNG ẨN: Đẩy toàn bộ iframe lên trên 45px để banner nằm ngoài màn hình */
-            top: -45px; 
+            /* Đẩy iframe lên đúng 50px để che dòng "Ứng dụng này do..." */
+            top: -50px; 
             left: 0;
             width: 100%;
-            /* Bù 45px vào chiều cao để ứng dụng không bị hụt phần đáy */
-            height: calc(100% + 45px); 
+            /* Bù lại 50px vào chiều cao để ứng dụng khớp đáy trình duyệt */
+            height: calc(100% + 50px); 
             border: none;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.5s ease;
         }
 
-        /* Tối ưu hóa cho Mobile: Banner Google trên mobile thường cao hơn */
+        /* Tối ưu hóa cho Mobile: Banner Google trên mobile thường cao hơn một chút */
         @media (max-width: 768px) {
             iframe {
                 top: -55px;
