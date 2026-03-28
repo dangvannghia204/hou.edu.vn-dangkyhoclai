@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hệ Thống Đăng Ký Học Tập - Đào Tạo Từ Xa</title>
     <style>
-        /* GIẢI PHÁP TỰ ĐỘNG ẨN THANH THÔNG BÁO GOOGLE (AUTOMATIC MASKING)
-           Bằng cách đẩy iframe lên trên vùng nhìn thấy và ẩn lề dư.
+        /* HIỂN THỊ MẶC ĐỊNH CHUẨN (NORMAL DISPLAY)
+           Đảm bảo ứng dụng hiển thị trọn vẹn 100% khung hình trình duyệt.
         */
         body, html {
             margin: 0;
@@ -23,26 +23,22 @@
             left: 0;
             right: 0;
             bottom: 0;
-            overflow: hidden; /* Quan trọng: Ngăn thanh banner của Google lộ ra */
+            display: flex;
+            flex-direction: column;
         }
 
         iframe {
-            position: absolute;
-            /* Đẩy iframe lên đúng 50px (Số âm) để banner nằm ngoài màn hình */
-            top: -50px; 
-            left: 0;
+            flex-grow: 1;
             width: 100%;
-            /* Bù lại 50px vào chiều cao để ứng dụng khớp đáy trình duyệt */
-            height: calc(100% + 50px); 
+            height: 100%;
             border: none;
-            transition: opacity 0.5s ease;
+            display: block;
         }
 
-        /* Tối ưu hóa cho Mobile: Banner Google trên mobile thường cao hơn một chút */
+        /* Responsive cho thiết bị di động */
         @media (max-width: 768px) {
             iframe {
-                top: -55px;
-                height: calc(100% + 55px);
+                height: 100%;
             }
         }
     </style>
@@ -50,7 +46,7 @@
 <body>
 
     <div id="app-wrapper">
-        <!-- THAY LINK DƯỚI ĐÂY BẰNG LINK WEB APP CỦA BẠN (Dạng /exec) -->
+        <!-- LINK WEB APP CỦA BẠN (Dạng /exec) -->
         <iframe id="main-app" 
                 src="https://script.google.com/macros/s/AKfycbwUKG7BFulmnagKfA9B_9rI00-klSqIl-yAdKHxeKHLMdJ9upw8R-69ay6DVnFEX6Vz/exec" 
                 allow="clipboard-read; clipboard-write"
