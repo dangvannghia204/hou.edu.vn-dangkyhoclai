@@ -79,7 +79,7 @@
         .info-list { list-style: none; padding: 0; margin: 0; font-size: 0.9rem; line-height: 1.8; color: #475569; }
         .info-list li b { color: #1e293b; }
 
-        /* --- KHU VỰC FORM (MAGIC CLIPPING) --- */
+        /* --- KHU VỰC FORM (Đã điều chỉnh thông số an toàn) --- */
         .form-portal {
             background: var(--card);
             border-radius: 16px;
@@ -87,23 +87,26 @@
             border: 1px solid var(--border);
             position: relative;
             
-            /* ĐÂY LÀ CHIỀU CAO CỬA SỔ HIỂN THỊ (Sẽ che footer) */
-            height: 750px; 
+            /* CHIỀU CAO CỬA SỔ HIỂN THỊ */
+            /* Bạn hãy để 900px để thấy được toàn bộ Form trước */
+            height: 900px; 
             overflow: hidden; 
         }
-
+        
         .form-portal iframe {
             position: absolute;
             
-            /* ĐẨY LÊN TRÊN ĐỂ CHE TIÊU ĐỀ MẶC ĐỊNH CỦA GOOGLE FORM */
-            top: -140px; 
+            /* ĐIỀU CHỈNH TIÊU ĐỀ: 
+               Bắt đầu bằng 0 để hiện Form. Nếu muốn che tiêu đề Google, 
+               hãy nhích dần lên -50px, -80px... cho đến khi vừa ý. */
+            top: 0px; 
             
             left: 0;
             width: 100%;
             
-            /* CHIỀU CAO THỰC CỦA IFRAME (Phải lớn hơn khung chứa để đẩy footer xuống dưới) */
-            height: 1000px; 
-            
+            /* CHIỀU CAO THỰC CỦA IFRAME:
+               Luôn để lớn hơn .form-portal khoảng 200px để có khoảng trống che footer */
+            height: 1100px; 
             border: none;
         }
 
