@@ -79,43 +79,39 @@
         .info-list { list-style: none; padding: 0; margin: 0; font-size: 0.9rem; line-height: 1.8; color: #475569; }
         .info-list li b { color: #1e293b; }
 
-        /* --- KHUNG CHỨA (CỬA SỔ HIỂN THỊ) --- */
+        /* KHUNG NGOÀI (CỬA SỔ) */
         .form-portal {
             background: #ffffff;
             border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             border: 1px solid #e2e8f0;
             
-            position: relative;
-            /* Bước 1: Để chiều cao này lớn (900px) để chắc chắn thấy Form trước */
-            height: 650px; 
-            overflow: hidden; 
+            overflow: hidden; /* Giữ lại để che phần thừa */
             width: 100%;
-            max-width: 760px; /* Độ rộng chuẩn của Google Form */
+            max-width: 760px;
             margin: auto;
+            
+            /* Bước 1: Để chiều cao này lớn hẳn (800px) để thấy Form đã */
+            height: 700px; 
         }
     
-        /* --- TÙY CHỈNH IFRAME --- */
+        /* IFRAME BÊN TRONG */
         .form-portal iframe {
-            position: absolute;
-            
-            /* BƯỚC 2: CHE HEADER - Nếu mất Form, hãy chỉnh số này về 0 */
-            top: 0px !important; 
-            
-            left: 0;
             width: 100% !important;
             
-            /* BƯỚC 3: CHIỀU CAO THỰC - Tuyệt đối không để 2419px */
-            /* Chỉ để 1000px là đủ để chứa các ô nhập liệu và đẩy Footer xuống */
-            height: 900px !important; 
+            /* Bước 2: Dùng margin-top để nhích Form lên (Che Header) */
+            /* Nếu không thấy Form, hãy chỉnh số -140px này về 0 */
+            margin-top: -140px; 
+            
+            /* Chiều cao thực phải đủ lớn để đẩy footer xuống đáy */
+            height: 1000px !important; 
             
             border: none;
         }
     
-        /* Tối ưu cho Mobile */
         @media (max-width: 600px) {
-            .form-portal { height: 750px; }
-            .form-portal iframe { top: -125px !important; height: 1000px !important; }
+            .form-portal { height: 900px; }
+            .form-portal iframe { margin-top: -130px; }
         }
         footer { text-align: center; padding: 30px; font-size: 0.8rem; color: #94a3b8; }
     </style>
@@ -151,7 +147,13 @@
 
     <main>
         <div class="form-portal">
-            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSepUzi5vT-EcINqaOMKEUdGTLKM3M7Rembe-W6Pul0PW6CNYQ/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0">Đang tải...</iframe>
+            <iframe 
+                src="https://docs.google.com/forms/d/e/1FAIpQLSepUzi5vT-EcINqaOMKEUdGTLKM3M7Rembe-W6Pul0PW6CNYQ/viewform?embedded=true" 
+                frameborder="0" 
+                marginheight="0" 
+                marginwidth="0">
+                Đang tải...
+            </iframe>
         </div>
     </main>
 </div>
