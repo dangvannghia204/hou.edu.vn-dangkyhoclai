@@ -3,6 +3,197 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cổng Đăng Ký Học Tập | University Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --bg-site: #f8fafc;
+            --white: #ffffff;
+            --border: #e2e8f0;
+            --text-main: #1e293b;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-site);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* --- NAVBAR --- */
+        nav {
+            background: var(--white);
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 4%;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            font-size: 1.1rem;
+        }
+
+        /* --- LAYOUT: MỞ RỘNG CHIỀU NGANG --- */
+        .wrapper {
+            max-width: 1400px; /* Tăng độ rộng tổng thể */
+            margin: 25px auto;
+            display: grid;
+            grid-template-columns: 280px 1fr; /* Thu nhỏ sidebar để nhường chỗ cho Form */
+            gap: 30px;
+            padding: 0 20px;
+            flex: 1;
+        }
+
+        /* --- SIDEBAR --- */
+        .sidebar { display: flex; flex-direction: column; gap: 20px; }
+        .side-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid var(--border);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .side-card h3 {
+            margin: 0 0 15px 0;
+            font-size: 0.85rem;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Quy trình các bước */
+        .step { display: flex; gap: 12px; margin-bottom: 15px; }
+        .step-num { 
+            width: 24px; height: 24px; background: #eff6ff; color: var(--primary); 
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 0.75rem; font-weight: 700; flex-shrink: 0;
+        }
+        .step-info b { display: block; font-size: 0.85rem; }
+        .step-info span { font-size: 0.75rem; color: #64748b; }
+
+        /* --- KHU VỰC FORM (MỞ RỘNG TỐI ĐA) --- */
+        .main-portal {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .portal-header-bar {
+            background: var(--white);
+            padding: 18px 30px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 1.1rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .registration-card {
+            background: var(--white);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+            height: 800px;
+        }
+
+        iframe {
+            width: 100% !important; /* Đảm bảo Form lấp đầy card */
+            height: 1100px;
+            border: none;
+            /* Căn chỉnh lại Margin âm để Form bắt đầu từ nội dung quan trọng */
+            margin-top: -140px; 
+            display: block;
+        }
+
+        /* --- MOBILE --- */
+        @media (max-width: 900px) {
+            .wrapper { grid-template-columns: 1fr; }
+            .sidebar { display: none; }
+            .registration-card { height: 1000px; }
+            iframe { margin-top: -130px; height: 1300px; }
+        }
+
+        footer { text-align: center; padding: 30px; font-size: 0.8rem; color: #94a3b8; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="brand">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+        <span>Cổng Đăng Ký Học Tập</span>
+    </div>
+    <div style="background: #ecfdf5; color: #065f46; padding: 5px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; border: 1px solid #d1fae5;">
+        ● HỆ THỐNG TRỰC TUYẾN
+    </div>
+</nav>
+
+<div class="wrapper">
+    <aside class="sidebar">
+        <div class="side-card">
+            <h3>Quy trình thực hiện</h3>
+            <div class="step">
+                <div class="step-num">1</div>
+                <div class="step-info"><b>Xác thực</b><span>Tài khoản sinh viên & Ngày sinh</span></div>
+            </div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <div class="step-info"><b>Lập kế hoạch</b><span>Chọn Ngành & Môn học</span></div>
+            </div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <div class="step-info"><b>Ghi nhận</b><span>Nhấn Gửi để hoàn tất</span></div>
+            </div>
+        </div>
+
+        <div class="side-card" style="border-left: 4px solid #3b82f6;">
+            <h3>Hỗ trợ kỹ thuật</h3>
+            <p style="font-size: 0.8rem; color: #64748b; margin: 0; line-height: 1.6;">
+                Mọi sự cố đăng ký vui lòng liên hệ Quản lý sinh viên.
+            </p>
+        </div>
+    </aside>
+
+    <main class="main-portal">
+        <div class="portal-header-bar">
+            CỔNG ĐĂNG KÝ HỌC LẠI - THI LẠI
+        </div>
+        
+        <div class="registration-card">
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSepUzi5vT-EcINqaOMKEUdGTLKM3M7Rembe-W6Pul0PW6CNYQ/viewform?embedded=true">Đang tải...</iframe>
+        </div>
+    </main>
+</div>
+
+<footer>
+    &copy; 2026 qlsv_trangnt - University Portal System. All rights reserved.
+</footer>
+
+</body>
+</html>
+
+<!--<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cổng Thông Tin Sinh Viên | University Portal</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -229,4 +420,4 @@
 </footer>
 
 </body>
-</html>
+</html>-->
