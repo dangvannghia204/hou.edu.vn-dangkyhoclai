@@ -79,41 +79,44 @@
         .info-list { list-style: none; padding: 0; margin: 0; font-size: 0.9rem; line-height: 1.8; color: #475569; }
         .info-list li b { color: #1e293b; }
 
-        /* --- KHU VỰC CỬA SỔ HIỂN THỊ (CONTAINER) --- */
+        /* --- KHUNG CHỨA (CỬA SỔ HIỂN THỊ) --- */
         .form-portal {
             background: #ffffff;
             border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
             border: 1px solid #e2e8f0;
             
             position: relative;
-            /* CHIỀU CAO CỬA SỔ: Chỉnh số này để che Footer */
-            height: 700px; 
+            /* Bước 1: Để chiều cao này lớn (900px) để chắc chắn thấy Form trước */
+            height: 650px; 
             overflow: hidden; 
+            width: 100%;
+            max-width: 760px; /* Độ rộng chuẩn của Google Form */
+            margin: auto;
         }
     
         /* --- TÙY CHỈNH IFRAME --- */
         .form-portal iframe {
             position: absolute;
             
-            /* CHE HEADER: Đẩy lên trên 130px để mất tiêu đề mặc định của Google */
-            top: -130px !important; 
+            /* BƯỚC 2: CHE HEADER - Nếu mất Form, hãy chỉnh số này về 0 */
+            top: -135px !important; 
             
             left: 0;
             width: 100% !important;
             
-            /* CHIỀU CAO THỰC TẾ: Để 1100px là đủ cho 2 câu hỏi của bạn */
-            height: 1100px !important; 
+            /* BƯỚC 3: CHIỀU CAO THỰC - Tuyệt đối không để 2419px */
+            /* Chỉ để 1000px là đủ để chứa các ô nhập liệu và đẩy Footer xuống */
+            height: 900px !important; 
             
             border: none;
         }
     
-        /* Đảm bảo trên điện thoại vẫn hiện tốt */
+        /* Tối ưu cho Mobile */
         @media (max-width: 600px) {
-            .form-portal { height: 850px; }
-            .form-portal iframe { top: -120px !important; height: 1200px !important; }
+            .form-portal { height: 750px; }
+            .form-portal iframe { top: -125px !important; height: 1000px !important; }
         }
-
         footer { text-align: center; padding: 30px; font-size: 0.8rem; color: #94a3b8; }
     </style>
 </head>
@@ -148,7 +151,7 @@
 
     <main>
         <div class="form-portal">
-            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSepUzi5vT-EcINqaOMKEUdGTLKM3M7Rembe-W6Pul0PW6CNYQ/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSepUzi5vT-EcINqaOMKEUdGTLKM3M7Rembe-W6Pul0PW6CNYQ/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0">Đang tải...</iframe>
         </div>
     </main>
 </div>
