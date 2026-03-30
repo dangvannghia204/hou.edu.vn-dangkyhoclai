@@ -79,43 +79,39 @@
         .info-list { list-style: none; padding: 0; margin: 0; font-size: 0.9rem; line-height: 1.8; color: #475569; }
         .info-list li b { color: #1e293b; }
 
-        /* --- KHU VỰC FORM (Đã điều chỉnh thông số an toàn) --- */
+        /* --- KHU VỰC CỬA SỔ HIỂN THỊ (CONTAINER) --- */
         .form-portal {
-            background: var(--card);
+            background: #ffffff;
             border-radius: 16px;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-            border: 1px solid var(--border);
-            position: relative;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border: 1px solid #e2e8f0;
             
-            /* CHIỀU CAO CỬA SỔ HIỂN THỊ */
-            /* Bạn hãy để 900px để thấy được toàn bộ Form trước */
-            height: 900px; 
+            position: relative;
+            /* CHIỀU CAO CỬA SỔ: Chỉnh số này để che Footer */
+            height: 700px; 
             overflow: hidden; 
         }
-        
+    
+        /* --- TÙY CHỈNH IFRAME --- */
         .form-portal iframe {
             position: absolute;
             
-            /* ĐIỀU CHỈNH TIÊU ĐỀ: 
-               Bắt đầu bằng 0 để hiện Form. Nếu muốn che tiêu đề Google, 
-               hãy nhích dần lên -50px, -80px... cho đến khi vừa ý. */
-            top: 0px; 
+            /* CHE HEADER: Đẩy lên trên 130px để mất tiêu đề mặc định của Google */
+            top: -130px !important; 
             
             left: 0;
-            width: 100%;
+            width: 100% !important;
             
-            /* CHIỀU CAO THỰC CỦA IFRAME:
-               Luôn để lớn hơn .form-portal khoảng 200px để có khoảng trống che footer */
-            height: 1100px; 
+            /* CHIỀU CAO THỰC TẾ: Để 1100px là đủ cho 2 câu hỏi của bạn */
+            height: 1100px !important; 
+            
             border: none;
         }
-
-        /* --- RESPONSIVE --- */
-        @media (max-width: 950px) {
-            .container { grid-template-columns: 1fr; }
-            .sidebar { display: none; }
-            .form-portal { height: 1000px; }
-            .form-portal iframe { height: 1200px; top: -130px; }
+    
+        /* Đảm bảo trên điện thoại vẫn hiện tốt */
+        @media (max-width: 600px) {
+            .form-portal { height: 850px; }
+            .form-portal iframe { top: -120px !important; height: 1200px !important; }
         }
 
         footer { text-align: center; padding: 30px; font-size: 0.8rem; color: #94a3b8; }
@@ -152,7 +148,7 @@
 
     <main>
         <div class="form-portal">
-            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSepUzi5vT-EcINqaOMKEUdGTLKM3M7Rembe-W6Pul0PW6CNYQ/viewform?embedded=true" width="640" height="2419" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSepUzi5vT-EcINqaOMKEUdGTLKM3M7Rembe-W6Pul0PW6CNYQ/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
         </div>
     </main>
 </div>
