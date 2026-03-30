@@ -3,38 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hệ Thống Đăng Ký Môn Học</title>
+    <title>Hệ Thống Đăng Ký Môn Học - Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        .btn-login {
-            background-color: #1a73e8;
-            color: white;
-            padding: 15px 30px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-family: 'Roboto', sans-serif;
-            font-weight: bold;
-            transition: 0.3s;
+        :root {
+            --primary-color: #1a73e8; /* Màu xanh Google chuyên nghiệp */
+            --bg-color: #f0f2f5;
+            --text-color: #3c4043;
         }
-        .btn-login:hover {
-            background-color: #1557b0;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header chuyên nghiệp */
+        header {
+            background-color: white;
+            padding: 15px 5%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-text h1 {
+            font-size: 18px;
+            margin: 0;
+            color: var(--primary-color);
+            text-transform: uppercase;
+        }
+
+        /* Container chứa Form */
+        .main-content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .form-card {
+            background: white;
+            width: 100%;
+            max-width: 850px;
+            border-radius: 8px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Hiệu ứng Loading giả lập website thật */
+        .loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            text-align: center;
+            color: #70757a;
+        }
+
+        iframe {
+            width: 100%;
+            height: 1200px; /* Tăng chiều cao để không bị cuộn trong cuộn */
+            border: none;
+            display: block;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 13px;
+            color: #70757a;
         }
     </style>
-    <!--<style>
-        body { margin: 0; padding: 0; display: flex; justify-content: center; background-color: #f4f7f6; }
-        .container { width: 100%; max-width: 800px; height: 100vh; }
-        iframe { border: none; width: 100%; height: 100%; }
-    </style>-->
 </head>
 <body>
-   <!-- <div class="container">
-        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSepUzi5vT-EcINqaOMKEUdGTLKM3M7Rembe-W6Pul0PW6CNYQ/viewform?embedded=true" width="640" height="2419" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-    </div>-->
-    <div style="text-align: center; margin-top: 100px;">
-        <h1>HỆ THỐNG ĐĂNG KÝ HỌC LẠI - THI LẠI</h1>
-        <p>Vui lòng đăng nhập bằng Tài khoản và Ngày sinh để tiếp tục.</p>
-        <br>
-        <a href="https://forms.gle/m8XJ6ZnuWjzn6vGk6" class="btn-login">BẮT ĐẦU ĐĂNG KÝ</a>
+
+<header>
+    <div class="logo-area">
+        <div class="logo-text">
+            <h1>HỆ THỐNG ĐĂNG KÝ HỌC LẠI - THI LẠI</h1>
+        </div>
     </div>
+    <div style="font-size: 14px; color: #5f6368;">Đợt đăng ký Tháng 03/2026</div>
+</header>
+
+<div class="main-content">
+    <div class="form-card">
+        <div class="loader">Đang tải hệ thống đăng ký...</div>
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSepUzi5vT-EcINqaOMKEUdGTLKM3M7Rembe-W6Pul0PW6CNYQ/viewform?embedded=true" width="640" height="2419" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+    </div>
+</div>
+
+<footer>
+    &copy; 2026 qlsv_trangnt - University Portal. All rights reserved.
+</footer>
+
 </body>
 </html>
