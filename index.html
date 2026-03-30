@@ -3,32 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hệ Thống Đăng Ký Sinh Viên | Student Portal</title>
+    <title>Cổng Thông Tin Sinh Viên | University Portal</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #1a73e8;
-            --bg-site: #f1f3f4;
+            --primary: #2563eb; /* Blue 600 */
+            --primary-light: #eff6ff;
+            --bg-site: #f8fafc; /* Slate 50 */
             --white: #ffffff;
-            --border: #dadce0;
-            --text-main: #202124;
+            --text-main: #1e293b; /* Slate 800 */
+            --text-sub: #64748b; /* Slate 500 */
+            --border: #e2e8f0; /* Slate 200 */
         }
 
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-site);
-            margin: 0;
             color: var(--text-main);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
-        /* --- NAVIGATION --- */
+        /* --- TOP NAVIGATION --- */
         nav {
             background: var(--white);
-            height: 64px;
+            height: 70px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 4%;
+            padding: 0 5%;
             border-bottom: 1px solid var(--border);
             position: sticky;
             top: 0;
@@ -40,121 +45,187 @@
             align-items: center;
             gap: 12px;
             font-weight: 700;
+            font-size: 1.1rem;
             color: var(--primary);
-            text-transform: uppercase;
-            font-size: 1rem;
+            letter-spacing: -0.02em;
         }
 
-        /* --- CHỈNH BỐ CỤC CHUẨN PORTAL --- */
-        .wrapper {
-            max-width: 1200px;
-            margin: 20px auto;
+        .status-pill {
+            background: #f0fdf4;
+            color: #166534;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border: 1px solid #dcfce7;
+        }
+
+        /* --- MAIN DASHBOARD LAYOUT --- */
+        .dashboard-wrapper {
+            max-width: 1300px;
+            margin: 30px auto;
             display: grid;
-            grid-template-columns: 300px 1fr;
-            gap: 20px;
-            padding: 0 15px;
+            grid-template-columns: 350px 1fr;
+            gap: 30px;
+            padding: 0 20px;
+            flex: 1;
         }
 
-        /* --- SIDEBAR --- */
-        .sidebar { display: flex; flex-direction: column; gap: 15px; }
+        /* --- SIDEBAR (GUIDE & STEPS) --- */
+        .sidebar { display: flex; flex-direction: column; gap: 20px; }
+        
         .side-card {
             background: var(--white);
-            border-radius: 8px;
-            padding: 20px;
+            border-radius: 16px;
+            padding: 24px;
             border: 1px solid var(--border);
-        }
-        .side-card h3 {
-            margin: 0 0 10px 0;
-            font-size: 0.8rem;
-            color: #5f6368;
-            text-transform: uppercase;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
 
-        /* --- KHU VỰC FORM: FIX LỖI CHE KHUẤT --- */
-        .main-portal {
+        .side-card h3 {
+            margin: 0 0 15px 0;
+            font-size: 0.9rem;
+            color: var(--text-sub);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Visual Progress Steps */
+        .step-list { margin: 0; padding: 0; list-style: none; }
+        .step-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .step-icon {
+            width: 28px; height: 28px;
+            background: var(--primary-light);
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .step-text b { display: block; font-size: 0.9rem; margin-bottom: 2px; }
+        .step-text span { font-size: 0.8rem; color: var(--text-sub); }
+
+        /* --- CONTENT AREA (THE FORM) --- */
+        .content-area {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 20px;
         }
 
-        .portal-header-bar {
+        .registration-card {
             background: var(--white);
-            padding: 15px 25px;
-            border-radius: 8px;
+            border-radius: 20px;
             border: 1px solid var(--border);
-            font-weight: 600;
-            color: var(--primary);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
 
-        .form-frame-container {
-            background: var(--white);
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            
-            /* GIẢI PHÁP MỚI: Dùng cửa sổ có thanh cuộn riêng */
+        .card-header {
+            padding: 20px 30px;
+            border-bottom: 1px solid var(--border);
+            background: #fbfcfd;
+        }
+
+        .card-header h2 {
+            margin: 0; font-size: 1.1rem; font-weight: 600;
+        }
+
+        /* IFRAME CONTAINER: NO CLIPPING HACKS */
+        .iframe-container {
             position: relative;
-            height: 75vh; /* Tự động theo chiều cao màn hình */
-            overflow-y: auto; /* Cho phép cuộn bên trong nếu form dài */
-            -webkit-overflow-scrolling: touch;
+            width: 100%;
+            /* Sử dụng min-height và scroll nội bộ để bảo vệ nút Submit */
+            height: 750px; 
+            overflow: hidden;
         }
 
-        .form-frame-container iframe {
+        iframe {
             width: 100%;
-            height: 2000px; /* Để chiều cao thật lớn để không bị cắt nút Submit */
+            height: 100%;
             border: none;
-            
-            /* CHỈ CHE PHẦN BANNER TÍM (An toàn cho mọi trang) */
-            margin-top: -145px; 
-            
             display: block;
         }
 
-        /* --- MOBILE --- */
-        @media (max-width: 900px) {
-            .wrapper { grid-template-columns: 1fr; }
+        /* --- RESPONSIVE MOBILE --- */
+        @media (max-width: 1000px) {
+            .dashboard-wrapper { grid-template-columns: 1fr; margin: 15px auto; }
             .sidebar { display: none; }
-            .form-frame-container { height: 85vh; }
+            .iframe-container { height: 900px; }
         }
 
-        footer { text-align: center; padding: 25px; font-size: 0.75rem; color: #70757a; }
+        footer {
+            text-align: center;
+            padding: 40px;
+            font-size: 0.8rem;
+            color: var(--text-sub);
+            background: var(--white);
+            border-top: 1px solid var(--border);
+        }
     </style>
 </head>
 <body>
 
 <nav>
     <div class="brand">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
-        <span>STUDENT REGISTRATION</span>
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+        <span>STUDENT PORTAL</span>
     </div>
-    <div style="color: #1e8e3e; font-size: 0.8rem; font-weight: 600;">● SYSTEM ONLINE</div>
+    <div class="status-pill">● HỆ THỐNG TRỰC TUYẾN</div>
 </nav>
 
-<div class="wrapper">
+<div class="dashboard-wrapper">
     <aside class="sidebar">
         <div class="side-card">
-            <h3>HƯỚNG DẪN</h3>
-            <p style="font-size: 0.85rem; line-height: 1.6; margin: 0;">
-                Nhập <b>Tài khoản</b> & <b>Ngày sinh</b>.<br>
-                Sau đó chọn <b>Ngành</b> và <b>Môn học</b>.<br>
-                Cuối cùng nhấn <b>Tiếp/Gửi</b>.
+            <h3>Quy trình thực hiện</h3>
+            <div class="step-list">
+                <div class="step-item">
+                    <div class="step-icon">1</div>
+                    <div class="step-text"><b>Xác thực</b><span>Mã SV và Ngày sinh (dd/mm/yyyy)</span></div>
+                </div>
+                <div class="step-item">
+                    <div class="step-icon">2</div>
+                    <div class="step-text"><b>Kế hoạch học tập</b><span>Chọn Ngành và danh sách Môn học</span></div>
+                </div>
+                <div class="step-item">
+                    <div class="step-icon">3</div>
+                    <div class="step-text"><b>Ghi nhận</b><span>Nhấn Gửi và nhận thông báo thành công</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="side-card" style="border-left: 4px solid #ef4444;">
+            <h3>Hỗ trợ kỹ thuật</h3>
+            <p style="font-size: 0.85rem; color: var(--text-sub); margin: 0;">
+                Gặp sự cố đăng nhập? Liên hệ Ban quản lý sinh viên tại phòng P.101 hoặc Hotline: 1900xxxx.
             </p>
         </div>
     </aside>
 
-    <main class="main-portal">
-        <div class="portal-header-bar">
-            Phiếu Đăng Ký Học Lại & Thi Lại - Học Kỳ II (2025 - 2026)
-        </div>
-        
-        <div class="form-frame-container">
-            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSepUzi5vT-EcINqaOMKEUdGTLKM3M7Rembe-W6Pul0PW6CNYQ/viewform?embedded=true">Đang tải...</iframe>
+    <main class="content-area">
+        <div class="registration-card">
+            <div class="card-header">
+                <h2>Phiếu Đăng Ký Học Lại & Thi Lại - Học Kỳ II (2025 - 2026)</h2>
+            </div>
+            
+            <div class="iframe-container">
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSepUzi5vT-EcINqaOMKEUdGTLKM3M7Rembe-W6Pul0PW6CNYQ/viewform?embedded=true">Đang tải hệ thống...</iframe>
+            </div>
         </div>
     </main>
 </div>
 
 <footer>
-    &copy; 2026 qlsv_trangnt - University Portal System.
+    &copy; 2026 qlsv_trangnt - University Information System.
 </footer>
 
 </body>
