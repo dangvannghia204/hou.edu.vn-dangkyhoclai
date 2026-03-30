@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cổng Đăng Ký Trực Tuyến | University Portal</title>
+    <title>Student Registration Portal | Hệ thống xác thực nội bộ</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -11,6 +11,7 @@
             --bg: #f8fafc;
             --card: #ffffff;
             --border: #e2e8f0;
+            --danger: #ef4444;
         }
 
         body {
@@ -22,11 +23,11 @@
             min-height: 100vh;
         }
 
-        /* --- NAVIGATION --- */
+        /* --- HEADER --- */
         nav {
             background: var(--card);
             border-bottom: 1px solid var(--border);
-            padding: 0.75rem 5%;
+            padding: 1rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -38,121 +39,116 @@
         .brand {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             font-weight: 700;
             color: var(--primary);
-            font-size: 1.1rem;
-            text-transform: uppercase;
+            font-size: 1.2rem;
+            letter-spacing: -0.5px;
         }
 
-        /* --- LAYOUT --- */
-        .wrapper {
+        /* --- LAYOUT CHÍNH --- */
+        .container {
             max-width: 1200px;
-            margin: 25px auto;
+            margin: 30px auto;
             display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 25px;
+            grid-template-columns: 320px 1fr;
+            gap: 30px;
             padding: 0 20px;
             flex: 1;
         }
 
         /* --- SIDEBAR --- */
-        .sidebar-card {
+        .sidebar { display: flex; flex-direction: column; gap: 20px; }
+        .card {
             background: var(--card);
             border-radius: 12px;
-            padding: 20px;
+            padding: 24px;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
             border: 1px solid var(--border);
-            margin-bottom: 20px;
         }
 
-        .sidebar-card h3 {
+        .card h3 {
             margin: 0 0 15px 0;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: var(--primary);
+            text-transform: uppercase;
             border-bottom: 2px solid #eff6ff;
-            padding-bottom: 8px;
+            padding-bottom: 10px;
         }
 
-        .info-text {
-            font-size: 0.85rem;
-            line-height: 1.6;
-            color: #475569;
-        }
+        .info-list { list-style: none; padding: 0; margin: 0; font-size: 0.9rem; line-height: 1.8; color: #475569; }
+        .info-list li b { color: #1e293b; }
 
-        /* --- MAGIC BOX: CHE FOOTER GOOGLE FORM --- */
-        .form-container {
+        /* --- KHU VỰC FORM (MAGIC CLIPPING) --- */
+        .form-portal {
             background: var(--card);
             border-radius: 16px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
             border: 1px solid var(--border);
-            
-            /* CỬA SỔ HIỂN THỊ */
             position: relative;
-            height: 800px; /* Chiều cao vùng bạn muốn sinh viên nhìn thấy */
-            overflow: hidden; /* Cắt bỏ mọi thứ tràn ra ngoài */
+            
+            /* ĐÂY LÀ CHIỀU CAO CỬA SỔ HIỂN THỊ (Sẽ che footer) */
+            height: 750px; 
+            overflow: hidden; 
         }
 
-        iframe {
+        .form-portal iframe {
             position: absolute;
-            top: 0;
+            
+            /* ĐẨY LÊN TRÊN ĐỂ CHE TIÊU ĐỀ MẶC ĐỊNH CỦA GOOGLE FORM */
+            top: -140px; 
+            
             left: 0;
             width: 100%;
             
-            /* CHIỀU CAO THỰC CỦA FORM */
-            /* Để chiều cao này lớn hơn .form-container khoảng 150px - 200px 
-               để đẩy phần footer Google xuống vùng bị cắt */
+            /* CHIỀU CAO THỰC CỦA IFRAME (Phải lớn hơn khung chứa để đẩy footer xuống dưới) */
             height: 1000px; 
             
             border: none;
         }
 
         /* --- RESPONSIVE --- */
-        @media (max-width: 900px) {
-            .wrapper { grid-template-columns: 1fr; }
-            aside { display: none; }
-            .form-container { height: 1100px; } /* Mobile cần cao hơn */
-            iframe { height: 1300px; }
+        @media (max-width: 950px) {
+            .container { grid-template-columns: 1fr; }
+            .sidebar { display: none; }
+            .form-portal { height: 1000px; }
+            .form-portal iframe { height: 1200px; top: -130px; }
         }
 
-        footer {
-            text-align: center;
-            padding: 20px;
-            font-size: 0.75rem;
-            color: #94a3b8;
-        }
+        footer { text-align: center; padding: 30px; font-size: 0.8rem; color: #94a3b8; }
     </style>
 </head>
 <body>
 
 <nav>
     <div class="brand">
-        <img src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png" width="24" alt="Logo">
-        <span>Student Registration Portal</span>
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+        <span>STUDENT REGISTRATION PORTAL</span>
     </div>
-    <div style="font-size: 0.8rem; color: #64748b;">Hệ thống xác thực nội bộ</div>
+    <div style="font-size: 0.85rem; color: #64748b;">Hệ thống xác thực nội bộ</div>
 </nav>
 
-<div class="wrapper">
-    <aside>
-        <div class="sidebar-card">
+<div class="container">
+    <aside class="sidebar">
+        <div class="card">
             <h3>📢 THÔNG BÁO</h3>
-            <div class="info-text">
-                • <b>Tài khoản:</b> Tên đăng nhập được cấp.<br>
-                • <b>Mật khẩu:</b> Ngày sinh (dd/mm/yyyy).<br>
-                • <b>Hỗ trợ:</b> Quản lý sinh viên.
-            </div>
+            <ul class="info-list">
+                <li>• <b>Tài khoản:</b> Tên đăng nhập được cấp.</li>
+                <li>• <b>Mật khẩu:</b> Ngày tháng năm sinh.</li>
+                <li>• <b>Định dạng:</b> dd/mm/yyyy.</li>
+                <li>• <b>Hỗ trợ:</b> Quản lý sinh viên.</li>
+            </ul>
         </div>
-        <div class="sidebar-card" style="border-left: 4px solid #ef4444;">
-            <h3>⚠️ LƯU Ý</h3>
-            <div class="info-text" style="color: #ef4444;">
-                Hệ thống sẽ tự động khóa sau khi hoàn thành thời gian đăng ký.
-            </div>
+        <div class="card" style="border-left: 4px solid var(--danger);">
+            <h3 style="color: var(--danger);">⚠️ LƯU Ý</h3>
+            <p style="font-size: 0.85rem; color: var(--danger); margin: 0;">
+                Hệ thống sẽ tự động khóa sau khi hoàn thành thời gian đăng ký. Vui lòng không chia sẻ mật khẩu.
+            </p>
         </div>
     </aside>
 
     <main>
-        <div class="form-container">
+        <div class="form-portal">
             <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSepUzi5vT-EcINqaOMKEUdGTLKM3M7Rembe-W6Pul0PW6CNYQ/viewform?embedded=true" width="640" height="2419" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
         </div>
     </main>
